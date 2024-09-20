@@ -1,0 +1,66 @@
+#include <iostream>
+#include<stack>
+using namespace std;
+void displayrev(stack<int> &s1){
+    if(s1.size()==0){
+        return;
+    }
+    int x=s1.top();
+    cout<<x<<" ";
+    s1.pop();
+    displayrev(s1);
+    s1.push(x);
+}
+void display(stack<int> &s1){
+    if(s1.size()==0){
+        return;
+    }
+    int x=s1.top();
+    s1.pop();
+    display(s1);
+    cout<<x<<" ";
+    s1.push(x);
+
+}
+void pushbottom(stack<int> &s1,int val){
+    if(s1.size()==0){
+        s1.push(val);
+        return;
+    }
+    int x=s1.top();
+    s1.pop();
+    pushbottom(s1,val);
+    s1.push(x);
+
+}
+void reverse(stack<int> &s1){
+    if(s1.size()==1){
+        return ;
+    }
+    int x=s1.top();
+    s1.pop();
+    reverse(s1);
+    pushbottom(s1,x);
+}
+
+
+
+int main() {
+stack<int> s1;
+s1.push(10);
+s1.push(20);
+s1.push(30);
+s1.push(40);
+s1.push(50);
+display(s1);
+cout<<endl;
+reverse(s1);
+display(s1);
+cout<<endl;
+cout<<s1.top();
+
+
+
+
+    return 0;
+}
